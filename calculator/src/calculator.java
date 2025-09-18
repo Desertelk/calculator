@@ -3,39 +3,42 @@ import java.util.Scanner;
 public class calculator {
     public static void main(String[] args) throws Exception {
         Scanner userIn = new Scanner(System.in);
+        char userOperation = 0;
         int currentNumber; 
         int answer; 
         System.out.println("Please input the first number, the operation you would like to perform and the second number");
         int firstNumber = userIn.nextInt();
 
-        while(true){
-            char userOperation = userIn.next().charAt(0);
+        while(userOperation != 'q'){
+            currentNumber = firstNumber;
             int secondNumber = userIn.nextInt();
+            userOperation = userIn.next().charAt(0);
 
             switch(userOperation){
                 case '+':
-                    answer = addNumbers(firstNumber, secondNumber);
+                    answer = addNumbers(currentNumber, secondNumber);
                     currentNumber = answer;
                     firstNumber = currentNumber;
                     System.out.println(answer);
+                    break;
                 case '-':
-                    answer = subtractNumbers(firstNumber, secondNumber);
+                    answer = subtractNumbers(currentNumber, secondNumber);
                     currentNumber = answer;
                     firstNumber = currentNumber;
                     System.out.println(answer);
-                    
+                    break;
                 case '*': 
-                    answer = multiplyNumbers(firstNumber, secondNumber);
+                    answer = multiplyNumbers(currentNumber, secondNumber);
                     currentNumber = answer;
-                    firstNumber = currentNumber;
                     System.out.println(answer);
-                    
+                    break;
                 case '/':
-                    answer = divideNumbers(firstNumber, secondNumber);
+                    answer = divideNumbers(currentNumber, secondNumber);
                     currentNumber = answer;
-                    firstNumber = currentNumber;
                     System.out.println(answer);
+                    break;
                 case 'q':
+                    userIn.close();
                     break;
             }
         }
