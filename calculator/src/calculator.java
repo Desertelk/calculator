@@ -4,15 +4,15 @@ public class calculator {
     public static void main(String[] args) throws Exception {
         Scanner userIn = new Scanner(System.in);
         char userOperation = 0;
-        int currentNumber; 
-        int answer; 
-        System.out.println("Please input the first number, the operation you would like to perform and the second number");
-        int firstNumber = userIn.nextInt();
+        double currentNumber; 
+        double answer; 
+        System.out.print("Please input the first number: ");
+        double firstNumber = userIn.nextDouble();
 
         while(userOperation != 'q'){
             currentNumber = firstNumber;
-            int secondNumber = userIn.nextInt();
             userOperation = userIn.next().charAt(0);
+            double secondNumber = userIn.nextDouble();
 
             switch(userOperation){
                 case '+':
@@ -30,33 +30,37 @@ public class calculator {
                 case '*': 
                     answer = multiplyNumbers(currentNumber, secondNumber);
                     currentNumber = answer;
+                    firstNumber = currentNumber;
                     System.out.println(answer);
                     break;
                 case '/':
                     answer = divideNumbers(currentNumber, secondNumber);
                     currentNumber = answer;
+                    firstNumber = currentNumber;
                     System.out.println(answer);
                     break;
                 case 'q':
                     userIn.close();
                     break;
+                default:
+                    System.out.println("That isn't a valid option, please try again");
             }
         }
     }
 
-    public static int addNumbers(int firstNumber, int secondNumber) {
+    public static double addNumbers(double firstNumber, double secondNumber) {
         return firstNumber + secondNumber;
     }
 
-    public static int subtractNumbers(int firstNumber, int secondNumber){
+    public static double subtractNumbers(double firstNumber, double secondNumber){
         return firstNumber - secondNumber;
     }
 
-    public static int multiplyNumbers(int firstNumber, int secondNumber){
+    public static double multiplyNumbers(double firstNumber, double secondNumber){
         return firstNumber * secondNumber;
     }
 
-    public static int divideNumbers(int firstNumber, int secondNumber){
+    public static double divideNumbers(double firstNumber, double secondNumber){
         if (secondNumber == 0) {
             throw new IllegalArgumentException("Division by zero is not allowed.");
         }
